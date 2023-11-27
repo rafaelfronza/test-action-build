@@ -1,0 +1,23 @@
+name: Test manually trigger GitHub Actions
+
+on:
+  repository_dispatch:
+    types: build-sw
+  # schedule:
+    # - cron: '*/5 * * * *'
+
+jobs:
+  build:
+    name: Build process
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Bazel
+        run: |
+          apt-get update
+          apt-get install bazel
+      - name: Execute build
+        run: |
+          bazel build :my_target --build_event_text_file=bazel_event.json
+      - name: View bazel_event.json
+        run: 'cat bazel_event.json'
