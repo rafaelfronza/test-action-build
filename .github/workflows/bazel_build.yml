@@ -14,8 +14,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install Bazel
         run: |
-          apt-get update
-          apt-get install bazel
+          sudo apt-get update
+          sudo apt-get install bazel
       - name: Execute build
         run: |
           bazel build :hello-world --build_event_text_file=bazel_event.json
