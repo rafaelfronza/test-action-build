@@ -18,6 +18,6 @@ jobs:
           apt-get install bazel
       - name: Execute build
         run: |
-          bazel build :my_target --build_event_text_file=bazel_event.json
+          bazel build :hello-world --build_event_text_file=bazel_event.json
       - name: View bazel_event.json
         run: 'cat bazel_event.json'
